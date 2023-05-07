@@ -27,9 +27,10 @@ namespace clown_mega_project
         int timer_time = 0;
         long timer_start_time;
         int current_step = 0;
+        long animation_timestamp;
 
         const int anim_time = 200 * 100000;
-        const int anim_step = 1;
+        const int anim_step = 3 * 100000;
 
         public dice_d6()
         {
@@ -44,7 +45,11 @@ namespace clown_mega_project
                 timer_time = 0;
                 timer_start_time = Stopwatch.GetTimestamp();
                 current_step = anim_step;
+
+                animation_timestamp = Stopwatch.GetTimestamp();
+
                 Thread anim_thread = new Thread(throw_animation);
+                anim_thread.IsBackground = true;
                 anim_thread.Start();
             }
             else if (!Convert.ToBoolean(animation_checkbox.IsChecked))
@@ -56,25 +61,38 @@ namespace clown_mega_project
 
         private void throw_animation()
         {
-            int rand = new Random().Next(1, 7);
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => { dice_img.Source = new BitmapImage(new Uri("/Images/" + rand.ToString() + ".png", UriKind.Relative)); }));
+            //int rand = new Random().Next(1, 7);
+            //Application.Current.Dispatcher.BeginInvoke(new Action(() => { dice_img.Source = new BitmapImage(new Uri("/Images/" + rand.ToString() + ".png", UriKind.Relative)); }));
             //dice_img.Source = new BitmapImage(new Uri("/Images/" + rand.ToString() + ".png", UriKind.Relative));
-            timer_time += current_step;
-            current_step *= anim_step + 1;
+            //timer_time += current_step;
+            //current_step *= anim_step + 1;
 
-            if (!(Stopwatch.GetTimestamp() - timer_start_time + current_step > anim_time))
+            if (Stopwatch.GetTimestamp() - animation_timestamp >= current_step)
+            {
+                timer_time += current_step;
+                current_step += anim_step;
+
+                int rand = new Random().Next(1, 7);
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => { dice_img.Source = new BitmapImage(new Uri("/Images/" + rand.ToString() + ".png", UriKind.Relative)); }));
+
+                animation_timestamp = Stopwatch.GetTimestamp();
+            }
+
+            /*if (!(Stopwatch.GetTimestamp() - timer_start_time + current_step > anim_time))
             {
                 Thread.Sleep(TimeSpan.FromMilliseconds(timer_time));
-            }
+            }*/
 
             if (Stopwatch.GetTimestamp() - timer_start_time < anim_time)
             {
                 Thread tmp = new Thread(throw_animation);
+                tmp.IsBackground = true;
                 tmp.Start();
             }
             else
             {
                 Thread tmp = new Thread(throw_end_animation);
+                tmp.IsBackground = true;
                 tmp.Start();
             }
         }
