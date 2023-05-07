@@ -36,7 +36,7 @@ internal class HelpfulClass
             return FakeData();
         }
 
-        public static UserControl get_by_name(string name)
+        public static UserControl GetByName(string name)
         {
             var serializer = new JsonSerializer();
             Type ans;
@@ -53,29 +53,26 @@ internal class HelpfulClass
             return instance as UserControl;
         }
 
-        public static void SaveToJson(List<IReturnValue> items)
+        public static void SaveToJson(Dictionary<Type, List<string>> items, string code = "")
         {
-
             var serializer = new JsonSerializer();
-            var tmp = new List<Tuple<IReturnValue, string>>();
 
-            foreach( var item in items ) {
-                Tuple<IReturnValue, string> tuple = new Tuple<IReturnValue, string>(item, item.ReturnValue());
-                tmp.Add(tuple);
-            }
-
-            using (StreamWriter fs = new StreamWriter("SavedParams.json"))
+            using (StreamWriter fs = new StreamWriter($"SavedParams{code}.json"))
             {
-                serializer.Serialize(fs, tmp);
+                serializer.Serialize(fs, items);
             }
             return;
         }
 
-        public static List<IReturnValue> LoadFromJson()
+        public static Dictionary<Type, List<string>> LoadFromJson(string code = "")
         {
-            var serializer = new JsonSerializer();  
-
+            var serializer = new JsonSerializer();
+            var tmp = new Dictionary<Type, List<string>>();
+            using (StreamReader fs = new StreamReader($"SavedParams{code}.json"))
+            {
+                tmp = (Dictionary<Type, List<string>>)serializer.Deserialize(fs, typeof(Dictionary<Type, List<string>>));
+            }
+            return tmp;
         }
     }
-
 }
