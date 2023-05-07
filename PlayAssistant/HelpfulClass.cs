@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using WpfApp1.Properties;
 using Newtonsoft.Json;
 
 namespace WpfApp1
