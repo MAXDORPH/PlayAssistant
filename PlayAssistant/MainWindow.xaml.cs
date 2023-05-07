@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace PlayAssistant
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -35,9 +35,5 @@ namespace WpfApp1
             //code
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            lb_players.Items.Add(new PlayerListCard());
-        }
     }
 }
