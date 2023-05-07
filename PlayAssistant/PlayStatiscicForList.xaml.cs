@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,24 +16,13 @@ using System.Windows.Shapes;
 namespace PlayAssistant
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PlayStatiscicForList.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PlayStatiscicForList : UserControl
     {
-        public MainWindow()
+        public PlayStatiscicForList()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //code
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //code
-        }
-
     }
 }
