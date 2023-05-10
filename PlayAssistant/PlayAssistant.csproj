@@ -58,6 +58,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DigitalStatisciс.xaml.cs">
+      <DependentUpon>DigitalStatisciс.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StringStatisciс.xaml.cs">
+      <DependentUpon>StringStatisciс.xaml</DependentUpon>
+    </Compile>
+    <Page Include="DigitalStatisciс.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GameChooseMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Character.cs" />
     <Compile Include="GameChooseMenu.xaml.cs">
       <DependentUpon>GameChooseMenu.xaml</DependentUpon>
     </Compile>
@@ -86,6 +97,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PlayStatiscicForList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StringStatisciс.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

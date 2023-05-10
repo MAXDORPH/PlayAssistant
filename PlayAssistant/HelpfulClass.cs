@@ -7,14 +7,29 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using Newtonsoft.Json;
 
-namespace WpfApp1
+namespace PlayAssistant
 {
+
+    public class Pair<T, U>
+    {
+        public Pair(){}
+
+        public Pair(T first, U second)
+        {
+            this.First = first;
+            this.Second = second;
+        }
+
+        public T First { get; set; }
+        public U Second { get; set; }
+    };
+
     interface IReturnValue
     {
-        string ReturnValue();
-        void setByValue(string value);
+        string GetValue();
+        void SetByValue(string value);
     }
-internal class HelpfulClass
+internal static class HelpfulClass
     {
         static List<Dictionary<String, String>> FakeData()
         {
@@ -36,24 +51,24 @@ internal class HelpfulClass
             return FakeData();
         }
 
-        public static UserControl GetByName(string name)
+        public static UserControl GetPSByName(string Title)
         {
             var serializer = new JsonSerializer();
             Type ans;
             using (StreamReader fs = new StreamReader("BaseUserControls.json"))
             {
-                var tmp_ser = (Dictionary<String, Type>)serializer.Deserialize(fs, typeof(Dictionary<String, Type>));
-                ans = tmp_ser[name];
+                var SerialisedBaseUserControls = (Dictionary<String, Type>)serializer.Deserialize(fs, typeof(Dictionary<String, Type>));
+                ans = SerialisedBaseUserControls[Title];
             }
 
-            var instance = Activator.CreateInstance(
+            var NeededUC = Activator.CreateInstance(
                 ans
                 );
 
-            return instance as UserControl;
+            return NeededUC as UserControl;
         }
 
-        public static void SaveToJson(Dictionary<Type, List<string>> items, string code = "")
+        public static void SaveToJson(Dictionary<Type, List<string>> items, List<Pair<string,Character>> PlaysCharacters, string code = "")
         {
             var serializer = new JsonSerializer();
 
@@ -64,7 +79,7 @@ internal class HelpfulClass
             return;
         }
 
-        public static Dictionary<Type, List<string>> LoadFromJson(string code = "")
+        public static Pair<Dictionary<Type, List<string>>, List<Pair<string, Character>>> LoadPSFromJson(string code = "")
         {
             var serializer = new JsonSerializer();
             var tmp = new Dictionary<Type, List<string>>();
@@ -72,7 +87,17 @@ internal class HelpfulClass
             {
                 tmp = (Dictionary<Type, List<string>>)serializer.Deserialize(fs, typeof(Dictionary<Type, List<string>>));
             }
-            return tmp;
+            return null;
+        }
+
+        public static void SafeCHRToJson(string code = "")
+        {
+            var serializer = new JsonSerializer();
+        }
+
+        public static void CreateGame(string name = "")
+        {
+            Character.ListGeneralAttributes.Clear();
         }
     }
 }

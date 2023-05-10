@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="342">
     <Grid Background="White">
-        <ListBox x:Name="MainList" Margin="30,30,30,30" MouseDoubleClick="MainList_MouseDoubleClick"/>
+        <ListBox x:Name="MainList" Margin="30,30,30,30"/>
 
     </Grid>
 </UserControl>
