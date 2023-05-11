@@ -5,11 +5,12 @@ using System.Windows.Controls;
 
 namespace PlayAssistant
 {
+    using AttributeListType = List<Pair<IReturnValue, Pair<string, string>>>;
     internal class Character
     {
         public string Name { get; set; }
-        public static List<Pair<IReturnValue, Pair<string, string>>> ListGeneralAttributes { get; set; }
-        public List<Pair<IReturnValue, Pair<string, string>>> ListAttributes { get; set; }
+        public static AttributeListType ListGeneralAttributes { get; set; }
+        public AttributeListType ListAttributes { get; set; }
         public Character(string name) { Name = name; }
         public void AddAttribute(String Title = "", String Value = "", bool IsDigit = false, bool IsGeneral = false) {
             if (Title == "")
