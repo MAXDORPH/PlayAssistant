@@ -20,12 +20,34 @@ namespace PlayAssistant
     /// </summary>
     public partial class CharacterCreate : UserControl
     {
+        Character character;
         public CharacterCreate()
         {
             InitializeComponent();
+
+            Characteristic.Items.Add(character.GetAttributes());
+        }
+
+        public bool NameCorrect()
+        {
+            if (Name.Text.Length > 0) { 
+                return true;
+            }
+            else{
+                return false;   
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            if (NameCorrect())
+            {
+                MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+                parentWindow.AddCharacter();
+            }
+        }
+
+        private void AddGeneralCharacteriscit_Click(object sender, RoutedEventArgs e)
         {
 
         }
