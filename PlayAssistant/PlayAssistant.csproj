@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CharacterCreate.xaml.cs">
+      <DependentUpon>CharacterCreate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DigitalStatisciс.xaml.cs">
       <DependentUpon>DigitalStatisciс.xaml</DependentUpon>
     </Compile>
@@ -66,6 +69,10 @@
     <Compile Include="StringStatisciс.xaml.cs">
       <DependentUpon>StringStatisciс.xaml</DependentUpon>
     </Compile>
+    <Page Include="CharacterCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DigitalStatisciс.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="avatar-example.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

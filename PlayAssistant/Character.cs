@@ -13,13 +13,11 @@ namespace PlayAssistant
         public AttributeListType ListAttributes { get; set; }
         public Character(string name) { Name = name; }
         public void AddAttribute(String Title = "", String Value = "", bool IsDigit = false, bool IsGeneral = false) {
-            if (Title == "")
-            {
+            if (Title == "") {
                 Title = $"New Character Statistic {ListGeneralAttributes.Count() + ListAttributes.Count() + 1}";
             }
             IReturnValue CurAtrType = (IReturnValue)(IsDigit ? typeof(DigitalStatiscic) : typeof(StringStatiscic));
-            if (IsGeneral)
-            {
+            if (IsGeneral) {
                 ListGeneralAttributes.Add(new Pair<IReturnValue, Pair<string, string>>(CurAtrType, new Pair<string, string>(Title, Value)));
             }
             else { 
