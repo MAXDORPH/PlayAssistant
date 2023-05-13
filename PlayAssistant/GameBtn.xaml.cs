@@ -31,7 +31,7 @@ namespace clown_mega_project
 
         private void Select_btn_Click(object sender, RoutedEventArgs e)
         {
-            ((GameList)((Grid)LogicalTreeHelper.GetParent(GameBtn_element)).Parent).SelectPage(game);
+            ((GameChooseMenu)Application.Current.MainWindow.Content).SetPage(new TestGamePage());
         }
     }
 }

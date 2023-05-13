@@ -20,15 +20,6 @@ namespace clown_mega_project
     /// </summary>
     public partial class GameList : Page
     {
-        public void SelectPage(string _game)
-        {
-            Application.Current.MainWindow.Dispatcher.Invoke(new Action(() =>
-            {
-                ((GameChooseMenu)Application.Current.MainWindow.Content).SetPage(new TestGamePage());
-            }));
-            //((GameChooseMenu)LogicalTreeHelper.GetParent(GameList_element)).SetPage(new TestGamePage());
-        }
-
         public GameList()
         {
             InitializeComponent();
