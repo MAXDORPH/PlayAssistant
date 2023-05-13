@@ -23,6 +23,21 @@ namespace PlayAssistant
         public GameChooseMenu()
         {
             InitializeComponent();
+
+            GameList gameList = new GameList();
+            GameList_frame.Content = gameList;
+        }
+
+        public void SetPage(TestGamePage _page)
+        {
+            GameList_frame.Content = _page;
+        }
+
+        private void CreateNewGame_btn_Click(object sender, RoutedEventArgs e)
+        {
+/*        var creation_window = new GameCreateWindow();
+        creation_window.Show();
+        creation_window.Activate();*/
         }
     }
 }
