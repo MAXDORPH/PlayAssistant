@@ -20,21 +20,19 @@ namespace PlayAssistant
     /// </summary>
     public partial class StringStatiscic : UserControl, IReturnValue
     {
-        public StringStatiscic(String Title)
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
+        public string Value { get => Field.Text; set => Field.Text = value; }
+
+        public StringStatiscic(String _Title, String _Value)
         {
             InitializeComponent();
-            this.Title.Content = Title;
+            this.ElTitle.Content = _Title;
+            Value = _Value;
         }
 
-        public string GetValue()
+        private void Field_TextChanged(object sender, TextChangedEventArgs e)
         {
-            return Field.Text;
-        }
-
-        public void SetByValue(string value)
-        {
-            Field.Text = value;
-            return;
+            Value= Field.Text;
         }
     }
 }

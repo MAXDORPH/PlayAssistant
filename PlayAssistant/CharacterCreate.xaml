@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PlayAssistant"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="500">
-    <Grid Background="White" >
+    <Grid x:Name="grid" Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -17,8 +17,9 @@
         <TextBox x:Name="Name" Margin="83,10,10,0" TextWrapping="Wrap" Text="Введите имя" VerticalAlignment="Top" Height="63" Grid.ColumnSpan="3" Grid.Column="2"/>
         <Image x:Name="Avatar" HorizontalAlignment="Right" Height="100" Margin="0,10,93,0" VerticalAlignment="Top" Width="230" OpacityMask="#FFCE0606" Source="/avatar-example.png" Stretch="Fill" Grid.ColumnSpan="3"/>
         <ListBox x:Name="Characteristic" Margin="10,115,10,60" Grid.ColumnSpan="5"/>
-        <Button x:Name="AddGeneralCharacteriscit" Content="Добавить Характеристику" Margin="83,78,10,0" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="3" Grid.Column="2" Click="AddGeneralCharacteriscit_Click"/>
-        <Button x:Name="Add" Content="Создать персонажа" HorizontalAlignment="Right" Margin="0,295,83,0" VerticalAlignment="Top" Height="45" Width="334" Grid.ColumnSpan="5" Click="Add_Click"/>
+        <Button x:Name="AddGeneralCharacteriscit" Content="Добавить Характеристику" Margin="83,78,10,0" VerticalAlignment="Top" Height="32" Grid.ColumnSpan="3" Grid.Column="2" Click="AddCharacteriscit_Click"/>
+        <Button x:Name="Add" Content="Создать персонажа" HorizontalAlignment="Right" Margin="0,295,73,0" VerticalAlignment="Top" Height="45" Width="334" Grid.ColumnSpan="4" Click="Add_Click"/>
+        <Button Grid.Column="3" Content="Close" HorizontalAlignment="Left" Margin="16,295,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="45" Width="141" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

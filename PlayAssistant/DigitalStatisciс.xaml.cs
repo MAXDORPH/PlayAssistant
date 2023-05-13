@@ -20,36 +20,41 @@ namespace PlayAssistant
     /// </summary>
     public partial class DigitalStatiscic : UserControl, IReturnValue
     {
-        public DigitalStatiscic(String Title)
+        
+
+        public string Value { get => ElValue.Text; set => ElValue.Text = value; }
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content= value; }
+
+        public DigitalStatiscic(String _Title, String _Value = "0")
         {
             InitializeComponent();
-            this.Title.Content = Title;
+            this.ElTitle.Content = _Title;
+            this.ElValue.Text = _Value;
         }
 
         private void Value_TextChanged(object sender, TextChangedEventArgs e)
         {
-            String text = Value.Text;
-            if (!Char.IsDigit(text[-1]))
+            String text = ElValue.Text;
+            if (ElValue.Text == "") text = "0";
+            if (!Char.IsDigit(text[text.Length-1]))
             {
-                Value.Text = text.Substring(0,text.Length - 1);
+                ElValue.Text = text.Substring(0,text.Length - 1);
             }            
+            Value= ElValue.Text;
         }
 
         private void UpBtn_Click(object sender, RoutedEventArgs e)
         {
-            int val = Int32.Parse(Value.Text);
+            int val = Int32.Parse(ElValue.Text);
             val++;
-            Value.Text = val.ToString();
+            ElValue.Text = val.ToString();
         }
 
         private void DownBtn_Click(object sender, RoutedEventArgs e)
         {
-            int val = Int32.Parse(Value.Text);
+            int val = Int32.Parse(ElValue.Text);
             val--;
-            Value.Text = val.ToString();
+            ElValue.Text = val.ToString();
         }
-        public string GetValue() => Value.Text;
-
-        public void SetByValue(string value) => Value.Text = value;
     }
 }

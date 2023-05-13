@@ -61,15 +61,25 @@
     <Compile Include="CharacterCreate.xaml.cs">
       <DependentUpon>CharacterCreate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CharacterForList.xaml.cs">
+      <DependentUpon>CharacterForList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DigitalStatisciс.xaml.cs">
       <DependentUpon>DigitalStatisciс.xaml</DependentUpon>
     </Compile>
     <Compile Include="IReturnValue.cs" />
+    <Compile Include="ListOfUserControls.xaml.cs">
+      <DependentUpon>ListOfUserControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pair.cs" />
     <Compile Include="StringStatisciс.xaml.cs">
       <DependentUpon>StringStatisciс.xaml</DependentUpon>
     </Compile>
     <Page Include="CharacterCreate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterForList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,7 +91,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListOfPlayStatistic.xaml">
+    <Page Include="ListOfUserControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,9 +108,6 @@
       <DependentUpon>GameChooseMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="HelpfulClass.cs" />
-    <Compile Include="ListOfPlayStatistic.xaml.cs">
-      <DependentUpon>ListOfPlayStatistic.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

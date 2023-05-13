@@ -27,8 +27,8 @@ namespace PlayAssistant
             return ans;
         }
 
-        public static List<Dictionary<String, String>> GetParams() {
-            return FakeData();
+        public static List<IReturnValue> GetParams() {
+            return null;
         }
 
         public static UserControl GetPSByName(string Title)
@@ -78,6 +78,15 @@ namespace PlayAssistant
         public static void CreateGame(string name = "")
         {
             Character.ListGeneralAttributes.Clear();
+        }
+        public static List<IReturnValue> GetAttributes()
+        {
+            var ans = new List<IReturnValue>
+            {
+                new StringStatiscic("", ""),
+                new DigitalStatiscic("")
+            };
+            return ans;
         }
     }
 }

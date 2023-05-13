@@ -20,12 +20,16 @@ namespace PlayAssistant
     /// </summary>
     public partial class CharacterCreate : UserControl
     {
-        Character character;
+        Character character = new Character("");
         public CharacterCreate()
         {
             InitializeComponent();
-
-            Characteristic.Items.Add(character.GetAttributes());
+            var lst = character.GetAttributes();
+            foreach (var attr in lst)
+            {
+                Characteristic.Items.Add(attr);
+            }
+            
         }
 
         public bool NameCorrect()
@@ -43,13 +47,37 @@ namespace PlayAssistant
             if (NameCorrect())
             {
                 MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
-                parentWindow.AddCharacter();
+
+                character.Name= Name.Text;
+
+                parentWindow.AddCharacter(character);
+                parentWindow.RemoveCreateCharacter();
             }
         }
 
-        private void AddGeneralCharacteriscit_Click(object sender, RoutedEventArgs e)
+        private void AddCharacteriscit_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            parentWindow.CreateList(false, false, character);
+        }
+        public void AddCharacter(IReturnValue chr)
+        {
+            Characteristic.Items.Add(chr);
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            parentWindow.RemoveCreateCharacter();
+        }
+        public void Refrash()
+        {
+            Characteristic.Items.Clear();
+            var lst = character.GetAttributes();
+            foreach (var attr in lst)
+            {
+                Characteristic.Items.Add(attr);
+            }
         }
     }
 }

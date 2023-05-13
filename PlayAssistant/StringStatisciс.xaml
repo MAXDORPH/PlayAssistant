@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PlayAssistant"
              mc:Ignorable="d" Height="92" Width="264" Background="White">
     <Grid>
-        <TextBox x:Name="Field"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="Field" VerticalAlignment="Top" Width="244" Height="52" Margin="0,30,0,0" BorderBrush="#FF0B48FF" />
-        <Label x:Name="Title" Content="Title&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Width="162" Height="26" BorderBrush="#FFD81515" OpacityMask="#FFFF0F0F" Background="White"/>
+        <TextBox x:Name="Field"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="Field" VerticalAlignment="Top" Width="244" Height="52" Margin="0,30,0,0" BorderBrush="#FF0B48FF" TextChanged="Field_TextChanged" />
+        <Label x:Name="ElTitle" Content="Title&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" Width="162" Height="26" BorderBrush="#FFD81515" OpacityMask="#FFFF0F0F" Background="White"/>
     </Grid>
 </UserControl>

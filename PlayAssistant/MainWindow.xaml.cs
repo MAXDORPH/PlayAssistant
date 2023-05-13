@@ -35,9 +35,87 @@ namespace PlayAssistant
             //code
         }
 
-        public void AddCharacter()
+        internal void AddCharacter(Character character)
+        {
+            lb_players.Items.Add(new CharacterForList(character));
+            return;
+        }
+
+        public void AddPS(IReturnValue PS)
         {
             return;
+        }
+
+        public void RemoveList(bool NeedToHide)
+        {
+            var lst = MainGrid.Children.OfType<ListOfUserControls>().ToList();
+            foreach (var item in lst)
+            {
+                MainGrid.Children.Remove(item);
+            }
+            if(NeedToHide) UnStels();
+            return;
+        }
+
+        public void RemoveCreateCharacter()
+        {
+            var lst = MainGrid.Children.OfType<CharacterCreate>().ToList();
+            foreach (var item in lst)
+            {
+                MainGrid.Children.Remove(item);
+            }
+            UnStels();
+            return;
+        }
+
+        public void CreateList(bool IsPSList, bool InMainWindow, Character curCh = null)
+        {
+            var list = new List<IReturnValue>();
+            if (IsPSList)
+            {
+                list = HelpfulClass.GetParams();
+            }
+            else
+            {
+                list = HelpfulClass.GetAttributes();
+            }
+
+            Stels();
+            MainGrid.Children.Add(new ListOfUserControls(list, IsPSList, InMainWindow, curCh));
+            return;
+        }
+
+        public void Stels()
+        {
+            Hide.IsEnabled= true;
+            Hide.Visibility= Visibility.Visible;
+        }
+
+        public void UnStels()
+        {
+            Hide.IsEnabled= false;
+            Hide.Visibility= Visibility.Hidden;
+        }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            Stels();
+            MainGrid.Children.Add(new CharacterCreate());
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            CreateList(true, true);
+        }
+        public void Refrash()
+        {
+            foreach (var item in MainGrid.Children.OfType<CharacterCreate>()) {
+                item.Refrash();
+            }
+            foreach(var item in lb_players.Items.OfType<CharacterForList>())
+            {
+                item.Refresh();
+            }
         }
     }
 }

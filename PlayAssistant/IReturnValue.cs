@@ -1,8 +1,9 @@
 ﻿namespace PlayAssistant
 {
-    interface IReturnValue
+    public interface IReturnValue
     {
-        string GetValue();
-        void SetByValue(string value);
+        string Title { get; set; }
+
+        string Value { get; set; }
     }
 }
