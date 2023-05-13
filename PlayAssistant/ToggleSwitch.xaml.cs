@@ -21,7 +21,7 @@ namespace clown_mega_project
     /// </summary>
     public partial class ToggleSwitch : UserControl
     {
-        bool state = false;
+        private bool state = false;
 
         public ToggleSwitch()
         {
@@ -43,5 +43,9 @@ namespace clown_mega_project
                 Rect.Fill = new SolidColorBrush(Colors.Gray);
             }
         }
+
+        public bool GetValue() => state;
+
+        public void SetValue(bool _value) => state = _value;
     }
 }

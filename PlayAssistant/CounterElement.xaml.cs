@@ -22,6 +22,9 @@ namespace clown_mega_project
     {
         public int value = 0;
 
+        double btnFontSize = 6;         // процент от высоты окна
+        double labelFontSize = 12;
+
         public CounterElement()
         {
             InitializeComponent();
@@ -29,8 +32,8 @@ namespace clown_mega_project
 
         private void Element_Loaded(object sender, RoutedEventArgs e)
         {
-            double labelfontsize = Application.Current.MainWindow.Height / 4;
-            double btnfontsize = App.Current.MainWindow.Height / 7;
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
             System.Windows.Application.Current.Resources.Remove("LabelFontSize");
             System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
             System.Windows.Application.Current.Resources.Remove("BtnFontSize");
@@ -39,8 +42,8 @@ namespace clown_mega_project
 
         private void Element_Resized(object sender, SizeChangedEventArgs e)
         {
-            double labelfontsize = Application.Current.MainWindow.Height / 4;
-            double btnfontsize = App.Current.MainWindow.Height / 7;
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
             System.Windows.Application.Current.Resources.Remove("LabelFontSize");
             System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
             System.Windows.Application.Current.Resources.Remove("BtnFontSize");
@@ -69,5 +72,9 @@ namespace clown_mega_project
         {
             Value_label.Content = value.ToString();
         }
+
+        public int GetValue() => value;
+
+        public void SetValue(int _value) => value = _value;
     }
 }

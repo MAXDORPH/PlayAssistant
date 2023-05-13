@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
+using System.Windows.Media; 
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -20,6 +20,32 @@ namespace clown_mega_project
     /// </summary>
     public partial class RandomGenerator : UserControl
     {
+        private readonly Random rand = new Random();
+        private int last_value = 0;
+
+        double btnFontSize = 6;         // процент от высоты окна
+        double labelFontSize = 12;
+
+        private void Element_Loaded(object sender, RoutedEventArgs e)
+        {
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
+            System.Windows.Application.Current.Resources.Remove("LabelFontSize");
+            System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
+            System.Windows.Application.Current.Resources.Remove("BtnFontSize");
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+        }
+
+        private void Element_Resized(object sender, SizeChangedEventArgs e)
+        {
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
+            System.Windows.Application.Current.Resources.Remove("LabelFontSize");
+            System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
+            System.Windows.Application.Current.Resources.Remove("BtnFontSize");
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+        }
+
         public RandomGenerator()
         {
             InitializeComponent();
@@ -27,8 +53,6 @@ namespace clown_mega_project
 
         private void Generate_btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
-            int res = 0;
             int from, to;
 
             try
@@ -42,5 +66,15 @@ namespace clown_mega_project
             }
 
         }
+
+        private void Set_Value(int _value)
+        {
+            Result_textblock.Text = _value.ToString();
+            last_value = _value;
+        }
+
+        public int GetValue() => last_value;
+
+        public void SetValue(int _value) => Set_Value(_value);
     }
 }

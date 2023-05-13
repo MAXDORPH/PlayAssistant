@@ -27,8 +27,31 @@ namespace clown_mega_project
         int temp_time;
         bool status = false;
         DateTime start_time;
-        Stopwatch timer = new Stopwatch();
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        private readonly Stopwatch timer = new Stopwatch();
+        private readonly DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
+        double btnFontSize = 6;         // процент от высоты окна
+        double labelFontSize = 12;
+
+        private void Element_Loaded(object sender, RoutedEventArgs e)
+        {
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
+            System.Windows.Application.Current.Resources.Remove("LabelFontSize");
+            System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
+            System.Windows.Application.Current.Resources.Remove("BtnFontSize");
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+        }
+
+        private void Element_Resized(object sender, SizeChangedEventArgs e)
+        {
+            double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
+            double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
+            System.Windows.Application.Current.Resources.Remove("LabelFontSize");
+            System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
+            System.Windows.Application.Current.Resources.Remove("BtnFontSize");
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+        }
 
         public TimerElement()
         {
@@ -36,11 +59,11 @@ namespace clown_mega_project
 
             temp_time = time;
 
-            dispatcherTimer.Tick += new EventHandler(timer_tick);
+            dispatcherTimer.Tick += new EventHandler(Timer_tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
         }
 
-        private void timer_tick(object sender, EventArgs e)
+        private void Timer_tick(object sender, EventArgs e)
         {
             temp_time -= 1;
             if (temp_time <= 0)
@@ -188,5 +211,9 @@ namespace clown_mega_project
             timer.Stop();
             dispatcherTimer.Stop();
         }
+
+        public int GetValue() => temp_time;
+
+        public void SetValue(int _value) => temp_time = _value;
     }
 }

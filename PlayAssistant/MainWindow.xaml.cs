@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PlayAssistant
+namespace clown_mega_project
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -23,6 +23,7 @@ namespace PlayAssistant
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.MainWindow.Content = new RandomGenerator();
         }
     }
 }
