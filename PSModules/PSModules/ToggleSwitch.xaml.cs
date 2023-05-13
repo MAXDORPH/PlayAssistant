@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace clown_mega_project
+namespace PSModules
 {
     /// <summary>
     /// Логика взаимодействия для ToggleSwitch.xaml

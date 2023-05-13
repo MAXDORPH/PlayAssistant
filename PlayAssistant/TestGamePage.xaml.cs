@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace clown_mega_project
+namespace PlayAssistant
 {
     /// <summary>
     /// Логика взаимодействия для TestGamePage.xaml

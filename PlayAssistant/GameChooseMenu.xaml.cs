@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace clown_mega_project
+namespace PlayAssistant
 {
     /// <summary>
     /// Логика взаимодействия для GameChooseMenu.xaml
@@ -35,9 +35,9 @@ namespace clown_mega_project
 
         private void CreateNewGame_btn_Click(object sender, RoutedEventArgs e)
         {
-            var creation_window = new GameCreateWindow();
-            creation_window.Show();
-            creation_window.Activate();
+/*        var creation_window = new GameCreateWindow();
+        creation_window.Show();
+        creation_window.Activate();*/
         }
     }
 }

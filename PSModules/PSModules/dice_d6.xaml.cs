@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace clown_mega_project
+namespace PSModules
 {
     /// <summary>
     /// Логика взаимодействия для dice_d6.xaml
@@ -38,23 +38,23 @@ namespace clown_mega_project
         const int anim_step = 35 * 10000;
 
         private void Element_Loaded(object sender, RoutedEventArgs e)
-        {
+        {/*
             double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
             double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
             System.Windows.Application.Current.Resources.Remove("LabelFontSize");
             System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
             System.Windows.Application.Current.Resources.Remove("BtnFontSize");
-            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);*/
         }
 
         private void Element_Resized(object sender, SizeChangedEventArgs e)
-        {
+        {/*
             double labelfontsize = Application.Current.MainWindow.Height * (labelFontSize / 100);
             double btnfontsize = App.Current.MainWindow.Height * (btnFontSize / 100);
             System.Windows.Application.Current.Resources.Remove("LabelFontSize");
             System.Windows.Application.Current.Resources.Add("LabelFontSize", labelfontsize);
             System.Windows.Application.Current.Resources.Remove("BtnFontSize");
-            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);
+            System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);*/
         }
 
         public dice_d6()
