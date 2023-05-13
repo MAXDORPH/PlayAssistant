@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.4.33213.308
+VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayAssistant", "PlayAssistant\PlayAssistant.csproj", "{143AA6CB-20F2-49F5-8A4D-C014A54B801A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayAssistant", "PlayAssistant\PlayAssistant.csproj", "{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{143AA6CB-20F2-49F5-8A4D-C014A54B801A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{143AA6CB-20F2-49F5-8A4D-C014A54B801A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{143AA6CB-20F2-49F5-8A4D-C014A54B801A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{143AA6CB-20F2-49F5-8A4D-C014A54B801A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0B63BC66-1FD5-46DD-A680-7CB9FFBFF509}
+		SolutionGuid = {BBCA9C63-B978-4A03-8121-12B8942C8394}
 	EndGlobalSection
 EndGlobal
