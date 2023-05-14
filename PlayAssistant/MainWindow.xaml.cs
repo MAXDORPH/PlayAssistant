@@ -20,10 +20,26 @@ namespace PlayAssistant
     /// </summary>
     public partial class MainWindow : Window
     {
+        GameChooseMenu gcm = new GameChooseMenu();
+        object mainWindow;
+
         public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow.Content = new GameChooseMenu();
+
+            mainWindow = Application.Current.MainWindow.Content;
+
+            Application.Current.MainWindow.Content = gcm;
+        }
+
+        public void OpenGameCreationWindow()
+        {
+            Application.Current.MainWindow.Content = mainWindow;
+        }
+
+        public void OpenGameChoosePage()
+        {
+            Application.Current.MainWindow.Content = gcm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -117,6 +133,34 @@ namespace PlayAssistant
             {
                 item.Refresh();
             }
+        }
+
+        public void OpenGameCreate(object sender, RoutedEventArgs e)
+        {
+            Stels();
+            GameCreate_grid.Visibility = Visibility.Visible;
+            GameCreate_grid.IsEnabled = true;
+            GameCreateMenu gcm = new GameCreateMenu();
+            
+            Grid.SetRow(gcm, 1);
+            Grid.SetColumn(gcm, 1);
+
+            GameCreate_grid.Children.Add(gcm);
+        }
+
+        public void CloseGameCreate()
+        {
+            GameCreate_grid.Visibility = Visibility.Hidden;
+            GameCreate_grid.IsEnabled = false;
+
+            GameCreate_grid.Children.Clear();
+
+            UnStels();
+        }
+
+        private void Exit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenGameChoosePage();
         }
     }
 }
