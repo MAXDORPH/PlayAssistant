@@ -24,11 +24,22 @@ namespace CHRSModules
         public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
         public string Value { get => Field.Text; set => Field.Text = value; }
 
-        public StringStatiscic(String _Title, String _Value)
+        public StringStatiscic()
+        {
+            InitializeComponent();
+            ElTitle.Content = "";
+            Field.IsEnabled = false;
+        }
+
+        public StringStatiscic(String _Title = "", String _Value = "")
         {
             InitializeComponent();
             this.ElTitle.Content = _Title;
             Value = _Value;
+            if (_Title == _Value)
+            {
+                Field.IsEnabled = false;
+            }
         }
 
         private void Field_TextChanged(object sender, TextChangedEventArgs e)

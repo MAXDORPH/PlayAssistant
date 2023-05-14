@@ -28,6 +28,14 @@ namespace PSModules
         {
             InitializeComponent();
         }
+        public ToggleSwitch(string _Title, string _Value = "0")
+        {
+            InitializeComponent();
+            Title = _Title;
+            if (_Value == "")
+                _Value = "0";
+            Value = _Value;
+        }
 
         private void Circle_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -45,7 +53,7 @@ namespace PSModules
             }
         }
 
-        public string Title { get; set; }
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
         public string Value { get => state.ToString(); set => bool.Parse(value); }
     }
 }

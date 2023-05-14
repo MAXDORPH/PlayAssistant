@@ -57,10 +57,19 @@ namespace PSModules
             System.Windows.Application.Current.Resources.Remove("BtnFontSize");
             System.Windows.Application.Current.Resources.Add("BtnFontSize", btnfontsize);*/
         }
-
+        public dice_d6(string _Title, string _Value)
+        {
+            InitializeComponent();
+            throw_btn.IsEnabled = false;
+            Title = _Title;
+            if (_Value == "")
+                   Value = "0";
+            Value = _Value;
+        }
         public dice_d6()
         {
             InitializeComponent();
+            throw_btn.IsEnabled = false;
         }
 
         private void throw_btn_Click(object sender, RoutedEventArgs e)

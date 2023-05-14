@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ServiceLibrary;
 
 namespace PSModules
 {
@@ -28,6 +29,14 @@ namespace PSModules
         public CounterElement()
         {
             InitializeComponent();
+        }
+        public CounterElement(string _Title, string _Value = "0")
+        {
+            InitializeComponent();
+            Title = _Title;
+            if (_Value == "")
+                _Value = "0";
+            Value = _Value;
         }
 
         private void Element_Loaded(object sender, RoutedEventArgs e)
@@ -73,7 +82,7 @@ namespace PSModules
             Value_label.Content = value.ToString();
         }
 
-        public string Title { get; set; }
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value;  }
         public string Value { get => value.ToString(); set => this.value = Int32.Parse(value); }
 
         public int GetValue() => value;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PSModules
 {
-    internal class ControlClass
+    public class ControlClass
     {
     }
 }

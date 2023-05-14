@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CHRSModules
 {
-    internal class ControlClass
+    public class ControlClass
     {
     }
 }

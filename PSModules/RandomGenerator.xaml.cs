@@ -51,6 +51,14 @@ namespace PSModules
         {
             InitializeComponent();
         }
+        public RandomGenerator(string _Title, string _Value)
+        {
+            InitializeComponent();
+            Title = _Title;
+            if (_Value == "")
+                _Value = "0";
+            Value = _Value;
+        }
 
         private void Generate_btn_Click(object sender, RoutedEventArgs e)
         {

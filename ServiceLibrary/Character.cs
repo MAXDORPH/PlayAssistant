@@ -4,14 +4,12 @@
     public class Character
     {
         public string Name { get; set; }
-        public static AttributeListType ListGeneralAttributes { get; set; }
+        public static AttributeListType? ListGeneralAttributes = new AttributeListType();
         public List<string> GeneralAttributesValue { get; set; }
         public AttributeListType ListAttributes { get; set; }
         public Character(string name) { 
             Name = name; 
             ListAttributes = new AttributeListType(); 
-            if (ListGeneralAttributes == null) 
-                ListGeneralAttributes = new AttributeListType(); 
             GeneralAttributesValue= new List<string>(ListGeneralAttributes.Count());
         }
         public void AddAttribute(IReturnValue stat) {
@@ -46,7 +44,10 @@
                     ans.Add((IReturnValue)
                         Activator.CreateInstance(
                             ListGeneralAttributes[i].GetType(),
-                            GeneralAttributesValue[i]));
+                            ListGeneralAttributes[i].Title,
+                            GeneralAttributesValue[i]
+                            )
+                        );
                 }
             }
             if (ListAttributes != null)
@@ -54,9 +55,12 @@
                 foreach (var item in ListAttributes)
                 {
                     ans.Add((IReturnValue)
-                        Activator.CreateInstance(item.GetType(),
-                                                 item.Title,
-                                                 item.Value));
+                        Activator.CreateInstance(
+                            item.GetType(),
+                            item.Title,
+                            item.Value
+                            )
+                        );
                 }
             }
             return ans;
@@ -65,7 +69,7 @@
         {
             for(int i = 0; i < GeneralAttributesValue.Count; i++)
             {
-                GeneralAttributesValue[i] = new Pair<string, string>(tmplist[i].Value, tmplist[i].Title);
+                GeneralAttributesValue[i] = (tmplist[i].Value);
             }
             for(int i = GeneralAttributesValue.Count; i < tmplist.Count; i++)
             {

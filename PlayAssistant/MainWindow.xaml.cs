@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PSModules;
+using ServiceLibrary;
 
 namespace PlayAssistant
 {
@@ -56,7 +56,7 @@ namespace PlayAssistant
 
         public void AddPS(IReturnValue PS)
         {
-            return;
+            PSMList.Items.Add(PS); return;
         }
 
         public void RemoveList(bool NeedToHide)
@@ -86,11 +86,11 @@ namespace PlayAssistant
             var list = new List<IReturnValue>();
             if (IsPSList)
             {
-                list = HelpfulClass.GetParams();
+                list = SessionService.GetParams();
             }
             else
             {
-                list = HelpfulClass.GetAttributes();
+                list = SessionService.GetAttributes();
             }
 
             Stels();
@@ -129,6 +129,12 @@ namespace PlayAssistant
             {
                 item.Refresh();
             }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Stels();
+            CreateList(false, true);
         }
     }
 }

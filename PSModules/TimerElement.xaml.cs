@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ServiceLibrary;
 
 namespace PSModules
 {
@@ -58,6 +59,18 @@ namespace PSModules
             InitializeComponent();
 
             temp_time = time;
+
+            dispatcherTimer.Tick += new EventHandler(Timer_tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+        }
+
+        public TimerElement(string _Title, string _Value)
+        {
+            InitializeComponent();
+            Title = _Title;
+            if (_Value == "")
+                _Value = "5";
+            Value = _Value;
 
             dispatcherTimer.Tick += new EventHandler(Timer_tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -212,7 +225,7 @@ namespace PSModules
             dispatcherTimer.Stop();
         }
 
-        public string Title { get; set; }
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
         public string Value { get => temp_time.ToString(); set => temp_time = Int32.Parse(value); }
     }
 }

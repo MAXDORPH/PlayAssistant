@@ -24,12 +24,25 @@ namespace CHRSModules
         bool st;
         public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
         public string Value { get => st.ToString(); set => SetStatus(value); }
-        public BoolStatiscic(string _Title, string _Value)
+        public BoolStatiscic() { 
+            InitializeComponent();
+            ElTitle.Content = "";
+            Status.IsEnabled = false;
+        }
+        public BoolStatiscic(string _Title = "", string _Value = "0")
         {
             InitializeComponent();
+            ElTitle.Content = _Title;
+            Value = _Value;
+            Title = _Title;
+
         }
         public void SetStatus(string status)
         {
+            if (status == "")
+            {
+                status = "false";
+            }
             st = bool.Parse(status);
             Status.Background = new SolidColorBrush(
                 st ? Colors.Green : Colors.Red

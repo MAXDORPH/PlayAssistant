@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
 using ServiceLibrary;
 
 namespace CHRSModules
@@ -26,7 +27,17 @@ namespace CHRSModules
         public string Value { get => ElValue.Text; set => ElValue.Text = value; }
         public string Title { get => (string)ElTitle.Content; set => ElTitle.Content= value; }
 
-        public DigitalStatiscic(String _Title, String _Value = "0")
+        public DigitalStatiscic()
+        {
+            InitializeComponent();
+            this.ElTitle.Content = "";
+            ElValue.Text = "0";
+            ElValue.IsEnabled = false;
+            UpBtn.IsEnabled = false;
+            DownBtn.IsEnabled = false;
+        }
+
+        public DigitalStatiscic(String _Title, String _Value)
         {
             InitializeComponent();
             this.ElTitle.Content = _Title;
