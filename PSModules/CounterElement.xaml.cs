@@ -18,7 +18,7 @@ namespace PSModules
     /// <summary>
     /// Логика взаимодействия для CounterElement.xaml
     /// </summary>
-    public partial class CounterElement : UserControl
+    public partial class CounterElement : UserControl, IReturnValue
     {
         public int value = 0;
 
@@ -72,6 +72,9 @@ namespace PSModules
         {
             Value_label.Content = value.ToString();
         }
+
+        public string Title { get; set; }
+        public string Value { get => value.ToString(); set => this.value = Int32.Parse(value); }
 
         public int GetValue() => value;
 

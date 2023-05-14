@@ -18,7 +18,7 @@ namespace PSModules
     /// <summary>
     /// Логика взаимодействия для Random.xaml
     /// </summary>
-    public partial class RandomGenerator : UserControl
+    public partial class RandomGenerator : UserControl, IReturnValue
     {
         private readonly Random rand = new Random();
         private int last_value = 0;
@@ -67,14 +67,13 @@ namespace PSModules
 
         }
 
-        private void Set_Value(int _value)
+        public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
+        public string Value { get => last_value.ToString(); set => Set_Value(value); }
+
+        private void Set_Value(string _value)
         {
-            Result_textblock.Text = _value.ToString();
-            last_value = _value;
+            Result_textblock.Text = _value;
+            last_value = Int32.Parse(_value);
         }
-
-        public int GetValue() => last_value;
-
-        public void SetValue(int _value) => Set_Value(_value);
     }
 }

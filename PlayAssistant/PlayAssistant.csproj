@@ -15,4 +15,8 @@
     <Resource Include="avatar-example.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="avatar-example.png" />
+  </ItemGroup>
+
 </Project>
