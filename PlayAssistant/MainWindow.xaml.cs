@@ -23,7 +23,7 @@ namespace PlayAssistant
         public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow.Content = new RandomGenerator();
+            Application.Current.MainWindow.Content = new GameChooseMenu();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
