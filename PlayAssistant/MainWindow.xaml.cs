@@ -26,12 +26,12 @@ namespace PlayAssistant
         {
             InitializeComponent();
             Console.WriteLine("");
-            var a = Assembly.GetAssembly(typeof(RandomGenerator));
+            var a = Assembly.GetAssembly(typeof(IReturnValue));
             Type[] lst = a.GetTypes();
             var types = new List<Type>();
             foreach ( Type t in lst )
             {
-                if ( t.GetInterface("IRetuarnValue") != null )
+                if ( t.GetInterface("IReturnValue") != null )
                     types.Add(t);
             }
 

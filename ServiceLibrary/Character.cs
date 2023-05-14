@@ -5,14 +5,14 @@
     {
         public string Name { get; set; }
         public static AttributeListType ListGeneralAttributes { get; set; }
-        public List<Pair<string,string>> GeneralAttributesValue { get; set; }
+        public List<string> GeneralAttributesValue { get; set; }
         public AttributeListType ListAttributes { get; set; }
         public Character(string name) { 
             Name = name; 
             ListAttributes = new AttributeListType(); 
             if (ListGeneralAttributes == null) 
                 ListGeneralAttributes = new AttributeListType(); 
-            GeneralAttributesValue= new List<Pair<string, string>>(ListGeneralAttributes.Count());
+            GeneralAttributesValue= new List<string>(ListGeneralAttributes.Count());
         }
         public void AddAttribute(IReturnValue stat) {
             if (stat.Title == "")
@@ -39,14 +39,14 @@
             if (ListGeneralAttributes != null) { 
                 while (GeneralAttributesValue.Count < ListGeneralAttributes.Count)
                 {
-                    GeneralAttributesValue.Add(new Pair<string, string>("",""));
+                    GeneralAttributesValue.Add("");
                 }
                 for(int i = 0; i < GeneralAttributesValue.Count; i++)
                 {
                     ans.Add((IReturnValue)
-                        Activator.CreateInstance(ListGeneralAttributes[i].GetType(),
-                                                 GeneralAttributesValue[i].First,
-                                                 GeneralAttributesValue[i].Second));
+                        Activator.CreateInstance(
+                            ListGeneralAttributes[i].GetType(),
+                            GeneralAttributesValue[i]));
                 }
             }
             if (ListAttributes != null)

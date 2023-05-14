@@ -12,11 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="avatar-example.png" />
+    <ProjectReference Include="..\CHRSModules\CHRSModules.csproj" />
+    <ProjectReference Include="..\PSModules\PSModules.csproj" />
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="avatar-example.png" />
   </ItemGroup>
+	
 
 </Project>
