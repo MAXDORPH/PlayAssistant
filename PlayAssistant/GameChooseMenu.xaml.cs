@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,11 +33,39 @@ namespace PlayAssistant
             GameList_frame.Content = _page;
         }
 
-        private void CreateNewGame_btn_Click(object sender, RoutedEventArgs e)
+        public void Stels()
         {
-/*        var creation_window = new GameCreateWindow();
-        creation_window.Show();
-        creation_window.Activate();*/
+            Hide.IsEnabled = true;
+            Hide.Visibility = Visibility.Visible;
+        }
+
+        public void UnStels()
+        {
+            Hide.IsEnabled = false;
+            Hide.Visibility = Visibility.Hidden;
+        }
+
+        public void OpenGameCreate(object sender, RoutedEventArgs e)
+        {
+            Stels();
+            GameCreate_grid.Visibility = Visibility.Visible;
+            GameCreate_grid.IsEnabled = true;
+            GameCreateMenu gcm = new GameCreateMenu();
+
+            Grid.SetRow(gcm, 1);
+            Grid.SetColumn(gcm, 1);
+
+            GameCreate_grid.Children.Add(gcm);
+        }
+
+        public void CloseGameCreate()
+        {
+            GameCreate_grid.Visibility = Visibility.Hidden;
+            GameCreate_grid.IsEnabled = false;
+
+            GameCreate_grid.Children.Clear();
+
+            UnStels();
         }
     }
 }
