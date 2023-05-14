@@ -67,5 +67,31 @@ namespace PlayAssistant
 
             UnStels();
         }
+
+        private void Search_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (Search_textbox.Text.Trim() == "")
+            {
+                ((GameList)GameList_frame.Content).ResetSearch();
+            }
+            else
+            {
+                ((GameList)GameList_frame.Content).Search(Search_textbox.Text.Trim());
+            }
+        }
+
+        private void Search_textbox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != System.Windows.Input.Key.Enter) return;
+
+            if (Search_textbox.Text.Trim() == "")
+            {
+                ((GameList)GameList_frame.Content).ResetSearch();
+            }
+            else
+            {
+                ((GameList)GameList_frame.Content).Search(Search_textbox.Text.Trim());
+            }
+        }
     }
 }
