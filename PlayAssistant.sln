@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayAssistant", "PlayAssistant\PlayAssistant.csproj", "{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTests", "SerializationTests\SerializationTests.csproj", "{AAEC30E7-3469-4012-B569-A8A19911B984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSModules", "PSModules\PSModules.csproj", "{CF92BDB6-A7FB-4F53-B32D-3DDC24BAF284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F10D4D12-38D0-43CB-80B5-8B2D5D4BFFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAEC30E7-3469-4012-B569-A8A19911B984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAEC30E7-3469-4012-B569-A8A19911B984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAEC30E7-3469-4012-B569-A8A19911B984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAEC30E7-3469-4012-B569-A8A19911B984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF92BDB6-A7FB-4F53-B32D-3DDC24BAF284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF92BDB6-A7FB-4F53-B32D-3DDC24BAF284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF92BDB6-A7FB-4F53-B32D-3DDC24BAF284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF92BDB6-A7FB-4F53-B32D-3DDC24BAF284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
