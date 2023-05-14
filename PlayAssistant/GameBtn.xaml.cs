@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +20,15 @@ namespace PlayAssistant
     /// </summary>
     public partial class GameBtn : UserControl
     {
-        private string game = "Game";
+        public string game = "TestGame";
 
-        public GameBtn()
+        public GameBtn(string _game_name = "Game")
         {
             InitializeComponent();
 
-            Select_btn.Content = "TestGame";
+            game = _game_name.ToLower();
+
+            Select_btn.Content = _game_name;
         }
 
         private void Select_btn_Click(object sender, RoutedEventArgs e)
