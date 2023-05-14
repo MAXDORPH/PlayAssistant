@@ -22,7 +22,7 @@ namespace PSModules
     /// <summary>
     /// Логика взаимодействия для dice_d6.xaml
     /// </summary>
-    public partial class dice_d6 : UserControl
+    public partial class dice_d6 : UserControl, IReturnValue
     {
         bool animation_is_active = false;
         int timer_time = 0;
@@ -126,8 +126,8 @@ namespace PSModules
             Application.Current.Dispatcher.BeginInvoke((Action)(() => { dice_border.BorderBrush = new SolidColorBrush(Colors.Transparent); }));
             animation_is_active = false;
         }
-
-        public int GetValue() => value;
+        public string Title { get; set; }
+        public string Value { get => value.ToString(); set => SetValue( Int32.Parse(value)); }
 
         public void SetValue(int _value) 
         { 

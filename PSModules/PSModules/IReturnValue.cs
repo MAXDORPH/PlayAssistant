@@ -1,4 +1,4 @@
-﻿namespace PlayAssistant
+﻿namespace PSModules
 {
     public interface IReturnValue
     {

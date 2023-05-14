@@ -21,7 +21,7 @@ namespace PSModules
     /// <summary>
     /// Логика взаимодействия для TimerElement.xaml
     /// </summary>
-    public partial class TimerElement : UserControl
+    public partial class TimerElement : UserControl, IReturnValue
     {
         int time = 5;
         int temp_time;
@@ -212,8 +212,7 @@ namespace PSModules
             dispatcherTimer.Stop();
         }
 
-        public int GetValue() => temp_time;
-
-        public void SetValue(int _value) => temp_time = _value;
+        public string Title { get; set; }
+        public string Value { get => temp_time.ToString(); set => temp_time = Int32.Parse(value); }
     }
 }

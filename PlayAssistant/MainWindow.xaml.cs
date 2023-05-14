@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PSModules;
 namespace PlayAssistant
 {
     /// <summary>
@@ -23,7 +24,17 @@ namespace PlayAssistant
         public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow.Content = new RandomGenerator();
+            Console.WriteLine("");
+            var a = Assembly.GetAssembly(typeof(RandomGenerator));
+            Type[] lst = a.GetTypes();
+            var types = new List<Type>();
+            foreach ( Type t in lst )
+            {
+                if ( t.GetInterface("IRetuarnValue") != null )
+                    types.Add(t);
+            }
+
+            Console.WriteLine("");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

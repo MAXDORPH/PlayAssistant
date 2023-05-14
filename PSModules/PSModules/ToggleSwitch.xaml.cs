@@ -19,7 +19,7 @@ namespace PSModules
     /// <summary>
     /// Логика взаимодействия для ToggleSwitch.xaml
     /// </summary>
-    public partial class ToggleSwitch : UserControl
+    public partial class ToggleSwitch : UserControl, IReturnValue
     {
         private bool state = false;
 
@@ -44,8 +44,7 @@ namespace PSModules
             }
         }
 
-        public bool GetValue() => state;
-
-        public void SetValue(bool _value) => state = _value;
+        public string Title { get; set; }
+        public string Value { get => state.ToString(); set => bool.Parse(value); }
     }
 }

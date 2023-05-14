@@ -12,6 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="PSModules">
+      <HintPath>..\PSModules\PSModules\bin\Debug\net6.0-windows\PSModules.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="avatar-example.png" />
   </ItemGroup>
 
