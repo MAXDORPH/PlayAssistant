@@ -29,11 +29,46 @@ namespace PlayAssistant
             InitializeComponent();
 
             for (int i = 0;i < btn_cnt;i++)
-                btn_list.Add(new GameBtn());
+                btn_list.Add(new GameBtn("TestGame" + i.ToString()));
 
             for (int i = 0;i < btn_list.Count;i++)
             {
                 MainGrid.ColumnDefinitions.Add(new ColumnDefinition() { 
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                btn_list[i].SetValue(Grid.ColumnProperty, i);
+                MainGrid.Children.Add(btn_list[i]);
+            }
+        }
+
+        public void Search(string name)
+        {
+            MainGrid.Children.Clear();
+            MainGrid.ColumnDefinitions.Clear();
+
+            for (int i = 0;i < btn_list.Count;i++)
+            {
+                if (btn_list[i].game.ToLower().Contains(name.Trim().ToLower()))
+                {
+                    MainGrid.ColumnDefinitions.Add(new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    });
+                    btn_list[i].SetValue(Grid.ColumnProperty, i);
+                    MainGrid.Children.Add(btn_list[i]);
+                }
+            }
+        }
+
+        public void ResetSearch()
+        {
+            MainGrid.Children.Clear();
+            MainGrid.ColumnDefinitions.Clear();
+
+            for (int i = 0; i < btn_list.Count; i++)
+            {
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition()
+                {
                     Width = new GridLength(1, GridUnitType.Star)
                 });
                 btn_list[i].SetValue(Grid.ColumnProperty, i);
