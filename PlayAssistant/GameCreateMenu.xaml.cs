@@ -29,5 +29,11 @@ namespace PlayAssistant
         {
             ((GameChooseMenu)Application.Current.MainWindow.Content).CloseGameCreate();
         }
+
+        private void Create_btn_Click(object sender, RoutedEventArgs e)
+        {
+            ((GameChooseMenu)Application.Current.MainWindow.Content).CloseGameCreate();
+            ((MainWindow)Application.Current.MainWindow).OpenGameCreationWindow();
+        }
     }
 }
