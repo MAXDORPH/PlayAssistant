@@ -43,8 +43,8 @@ namespace PlayAssistant
             using (FileStream chr = File.Create($@"{SessionName}/Characters.json"), md = File.Create($@"{SessionName}/Modules.json"))
             {
                 var serializer = new JsonSerializer();
-                var tmpChr = new Pair<List<string>, List<Character>>();
-                var tmpMd = new List<IReturnValue>();
+                var tmpChr = new ChrDataType();
+                var tmpMd = new MdDataType();
                 serializer.Serialize(new StreamWriter(chr), tmpChr);
                 serializer.Serialize(new StreamWriter(md), tmpMd);
             }
@@ -56,6 +56,7 @@ namespace PlayAssistant
             using (StreamWriter chr = new StreamWriter(@$"{SessionName}/Characters.json"), md = new StreamWriter($@"{SessionName}/Modules.json"))
             {
                 var serializer = new JsonSerializer();
+                serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 serializer.Serialize(chr, ChrData);
                 serializer.Serialize(md, MdData);
             }

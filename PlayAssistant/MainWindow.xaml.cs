@@ -34,6 +34,7 @@ namespace PlayAssistant
             mainWindow = Application.Current.MainWindow.Content;
 
             Application.Current.MainWindow.Content = gcm;
+            
             this.Closing += MainWindow_Closing;
         }
 
@@ -67,13 +68,18 @@ namespace PlayAssistant
             var arg = SessionService.LoadSession();
             var ChrData = arg.First;
             var MdData = arg.Second;
-            Character.ListGeneralAttributes = ChrData.First;
-            foreach(var item in ChrData.Second){
-                lb_players.Items.Add( new CharacterForList(item) );
+            if (arg.First != null) {  
+                Character.ListGeneralAttributes = ChrData.First;
+                foreach(var item in ChrData.Second){
+                    lb_players.Items.Add( new CharacterForList(item) );
+                }
             }
-            foreach(var item in MdData)
+            if (arg.Second != null)
             {
-                PSMList.Items.Add(item);
+                foreach (var item in MdData)
+                {
+                    PSMList.Items.Add(item);
+                }
             }
         }
 
