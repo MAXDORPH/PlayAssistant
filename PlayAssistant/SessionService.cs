@@ -12,7 +12,7 @@ namespace PlayAssistant
 {
     internal static class SessionService
     {
-        static string SessionName {get; set; }
+        public static string SessionName {get; set; }
         public static List<IReturnValue> GetParams()
         {
             var ans = new List<IReturnValue>();
