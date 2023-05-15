@@ -45,8 +45,12 @@ namespace PlayAssistant
             }
             var ChrData = new ChrDataType(
                     Character.ListGeneralAttributes,
-                    
+                    characters()
                 );
+            var MdData = new MdDataType(
+                    PSMList.Items.OfType<IReturnValue>().ToList()
+                    );
+            SessionService.SaveSession(new Pair<ChrDataType, MdDataType>(ChrData, MdData) );
         }
         public List<Character> characters()
         {
