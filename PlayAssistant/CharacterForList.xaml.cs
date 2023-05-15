@@ -28,7 +28,7 @@ namespace PlayAssistant
         {
             InitializeComponent();
             this.character = character;
-            Name.Text= character.Name;
+            Name.Content= character.Name;
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
