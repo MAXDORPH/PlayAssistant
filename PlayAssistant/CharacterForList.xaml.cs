@@ -22,7 +22,7 @@ namespace PlayAssistant
     public enum Status { Open, Close }
     public partial class CharacterForList : UserControl
     {
-        Character character;
+        public Character character;
         Status st = Status.Close;
         internal CharacterForList(Character character)
         {

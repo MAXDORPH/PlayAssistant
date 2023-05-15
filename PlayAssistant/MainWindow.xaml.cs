@@ -20,6 +20,8 @@ namespace PlayAssistant
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    using ChrDataType = Pair<List<IReturnValue>, List<Character>>;
+    using MdDataType = List<IReturnValue>;
     public partial class MainWindow : Window
     {
         GameChooseMenu gcm = new GameChooseMenu();
@@ -32,6 +34,43 @@ namespace PlayAssistant
             mainWindow = Application.Current.MainWindow.Content;
 
             Application.Current.MainWindow.Content = gcm;
+            this.Closing += MainWindow_Closing;
+        }
+
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (SessionService.SessionName == null)
+            {
+                return;
+            }
+            var ChrData = new ChrDataType(
+                    Character.ListGeneralAttributes,
+                    
+                );
+        }
+        public List<Character> characters()
+        {
+            var list = new List<Character>();
+            var lstchr = lb_players.Items.OfType<CharacterForList>().ToList();
+            foreach(var item in lstchr)
+            {
+                list.Add(item.character);
+            }
+            return list;
+        }
+        public void StartSession()
+        {
+            var arg = SessionService.LoadSession();
+            var ChrData = arg.First;
+            var MdData = arg.Second;
+            Character.ListGeneralAttributes = ChrData.First;
+            foreach(var item in ChrData.Second){
+                lb_players.Items.Add( new CharacterForList(item) );
+            }
+            foreach(var item in MdData)
+            {
+                PSMList.Items.Add(item);
+            }
         }
 
         public void OpenGameCreationWindow()
@@ -42,16 +81,6 @@ namespace PlayAssistant
         public void OpenGameChoosePage()
         {
             Application.Current.MainWindow.Content = gcm;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //code
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //code
         }
 
         internal void AddCharacter(Character character)

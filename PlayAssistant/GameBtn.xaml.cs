@@ -34,7 +34,8 @@ namespace PlayAssistant
         private void Select_btn_Click(object sender, RoutedEventArgs e)
         {
             SessionService.SessionName= game;
-
+            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            parentWindow.StartSession();
             ((GameChooseMenu)Application.Current.MainWindow.Content).SetPage(new TestGamePage());
         }
     }

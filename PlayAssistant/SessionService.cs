@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 
 namespace PlayAssistant
 {
+    using ChrDataType = Pair<List<IReturnValue>, List<Character>>;
+    using MdDataType = List<IReturnValue>;
     internal static class SessionService
     {
         public static string SessionName {get; set; }
@@ -47,7 +49,7 @@ namespace PlayAssistant
                 serializer.Serialize(new StreamWriter(md), tmpMd);
             }
         }
-        public static void SaveSession(Pair<Pair<List<string>, List<Character>>, List<IReturnValue>> ChrAndMd)
+        public static void SaveSession(Pair<ChrDataType, MdDataType> ChrAndMd)
         {
             var ChrData = ChrAndMd.First;
             var MdData = ChrAndMd.Second;
@@ -59,16 +61,16 @@ namespace PlayAssistant
             }
             return;
         }
-        public static Pair<Pair<List<string>, List<Character>>, List<IReturnValue>> LoadSession()
+        public static Pair<ChrDataType, MdDataType> LoadSession()
         {
             
-            Pair<Pair<List<string>, List<Character>>, List<IReturnValue>> ans;
+            Pair<ChrDataType, MdDataType> ans;
             using (StreamReader chr = new StreamReader(@$"{SessionName}/Characters.json"), md = new StreamReader($@"{SessionName}/Modules.json"))
             {
                 var serializer =new JsonSerializer();
-                var ChrData = serializer.Deserialize(chr, typeof(Pair<List<string>, List<Character>>)) as Pair<List<string>, List<Character>>;
-                var MdData = serializer.Deserialize(md, typeof(List<IReturnValue>)) as List<IReturnValue>;
-                ans = new Pair<Pair<List<string>, List<Character>>, List<IReturnValue>>(ChrData, MdData);
+                var ChrData = serializer.Deserialize(chr, typeof(ChrDataType)) as ChrDataType;
+                var MdData = serializer.Deserialize(md, typeof(MdDataType)) as MdDataType;
+                ans = new Pair<ChrDataType, MdDataType>(ChrData, MdData);
             }
             return ans;
         }
