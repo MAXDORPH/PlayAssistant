@@ -6,4 +6,10 @@
 
         string Value { get; set; }
     }
+    public struct ReturnValue
+    {
+        public ReturnValue(string _Title, string _Value) { }
+        public string Title { get; set; }
+        public string Value { get; set; }
+    }
 }

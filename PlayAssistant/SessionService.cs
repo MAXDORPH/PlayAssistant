@@ -10,8 +10,15 @@ using Newtonsoft.Json;
 
 namespace PlayAssistant
 {
-    using ChrDataType = Pair<List<IReturnValue>, List<Character>>;
-    using MdDataType = List<IReturnValue>;
+    using MdListDataType = List<Pair<Type, ReturnValue>>;
+    using ChrListDataType = List<CharacterBase>;
+    using SessinDataType = Pair<Pair<List<CharacterBase>, List<Pair<Type, ReturnValue>>>, List<Pair<Type, ReturnValue>>>;
+
+    public struct CharacterBase {
+        public List<string> GenVal;
+        public MdListDataType Attr;
+        public string name;
+    }
     internal static class SessionService
     {
         public static string SessionName {get; set; }
@@ -43,13 +50,13 @@ namespace PlayAssistant
             using (FileStream chr = File.Create($@"{SessionName}/Characters.json"), md = File.Create($@"{SessionName}/Modules.json"))
             {
                 var serializer = new JsonSerializer();
-                var tmpChr = new Pair<List<string>, List<Character>>();
-                var tmpMd = new List<IReturnValue>();
+                var tmpChr = new ChrListDataType();
+                var tmpMd = new MdListDataType();
                 serializer.Serialize(new StreamWriter(chr), tmpChr);
                 serializer.Serialize(new StreamWriter(md), tmpMd);
             }
         }
-        public static void SaveSession(Pair<ChrDataType, MdDataType> ChrAndMd)
+        public static void SaveSession(SessinDataType ChrAndMd)
         {
             var ChrData = ChrAndMd.First;
             var MdData = ChrAndMd.Second;
@@ -61,18 +68,62 @@ namespace PlayAssistant
             }
             return;
         }
-        public static Pair<ChrDataType, MdDataType> LoadSession()
+        public static SessinDataType LoadSession()
         {
-            
-            Pair<ChrDataType, MdDataType> ans;
+
+            SessinDataType ans;
             using (StreamReader chr = new StreamReader(@$"{SessionName}/Characters.json"), md = new StreamReader($@"{SessionName}/Modules.json"))
             {
                 var serializer =new JsonSerializer();
-                var ChrData = serializer.Deserialize(chr, typeof(ChrDataType)) as ChrDataType;
-                var MdData = serializer.Deserialize(md, typeof(MdDataType)) as MdDataType;
-                ans = new Pair<ChrDataType, MdDataType>(ChrData, MdData);
+                var ChrData = serializer.Deserialize(chr, typeof(Pair<ChrListDataType, MdListDataType>)) as Pair<ChrListDataType, MdListDataType>;
+                if (ChrData == null ) { ChrData = new Pair<ChrListDataType, MdListDataType>(); }
+                var MdData = serializer.Deserialize(md, typeof(MdListDataType)) as MdListDataType;
+                if (MdData == null ) { MdData = new MdListDataType(); }
+                ans = new SessinDataType(ChrData, MdData);
             }
             return ans;
         }
-    }
+        public static CharacterBase ChrSave(Character chr)
+        {
+            var ans = new CharacterBase();
+            ans.name = chr.Name;
+            ans.Attr = IntRVtoStruct(chr.ListAttributes);
+            ans.GenVal = chr.GeneralAttributesValue; ;
+            return ans;
+        }
+        public static Character ChrLoad(CharacterBase chr)
+        {
+            var ans = new Character(chr.name);
+            ans.GeneralAttributesValue = chr.GenVal;
+            ans.ListAttributes = StructRVToInt(chr.Attr);
+            return ans;
+        }
+        public static MdListDataType IntRVtoStruct(List<IReturnValue> values)
+        {
+            var ans = new MdListDataType();
+            foreach (var item in values)
+            {
+                var t = item.GetType();
+                var pr = new ReturnValue(item.Title, item.Value);
+                ans.Add(new Pair<Type, ReturnValue>(t, pr));
+            }
+            return ans;
+        }
+        public static List<IReturnValue> StructRVToInt(MdListDataType values)
+        {
+            var ans = new List<IReturnValue>();
+            if (values != null) { 
+                foreach(var item in values)
+                {
+                    var tmp = Activator.CreateInstance(
+                        item.First,
+                        item.Second.Title,
+                        item.Second.Value
+                        );
+                    ans.Add(tmp as IReturnValue);
+                }
+            }   
+            return ans;
+        }
+    }    
 }

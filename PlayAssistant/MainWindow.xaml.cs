@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,8 +21,9 @@ namespace PlayAssistant
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    using ChrDataType = Pair<List<IReturnValue>, List<Character>>;
-    using MdDataType = List<IReturnValue>;
+    using MdListDataType = List<Pair<Type, ReturnValue>>;
+    using ChrListDataType = List<CharacterBase>;
+    using SessinDataType = Pair<Pair<List<CharacterBase>, List<Pair<Type, ReturnValue>>>, List<Pair<Type, ReturnValue>>>;
     public partial class MainWindow : Window
     {
         GameChooseMenu gcm = new GameChooseMenu();
@@ -36,44 +38,51 @@ namespace PlayAssistant
             Application.Current.MainWindow.Content = gcm;
             this.Closing += MainWindow_Closing;
         }
-
+        //  1 -- персонажи 2 -- лист генеральных характеристик 3 -- лист игровых модулей
+        // Pair<Pair<ChrListDataType, MdListDataType> MdListDataType>
         private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             if (SessionService.SessionName == null)
             {
                 return;
             }
-            var ChrData = new ChrDataType(
-                    Character.ListGeneralAttributes,
-                    characters()
+            var GenAttr = SessionService.IntRVtoStruct(Character.ListGeneralAttributes);
+            var ChrData = new Pair<ChrListDataType, MdListDataType>(new ChrListDataType(
+                    characters()),
+                    GenAttr
                 );
-            var MdData = new MdDataType(
-                    PSMList.Items.OfType<IReturnValue>().ToList()
+            var MdData = new MdListDataType(
+                    SessionService.IntRVtoStruct(PSMList.Items.OfType<IReturnValue>().ToList())
                     );
-            SessionService.SaveSession(new Pair<ChrDataType, MdDataType>(ChrData, MdData) );
+            SessionService.SaveSession(new SessinDataType(ChrData, MdData) );
         }
-        public List<Character> characters()
+        public ChrListDataType characters()
         {
-            var list = new List<Character>();
+            var list = new ChrListDataType();
             var lstchr = lb_players.Items.OfType<CharacterForList>().ToList();
             foreach(var item in lstchr)
             {
-                list.Add(item.character);
+                list.Add(SessionService.ChrSave(item.character));
             }
             return list;
         }
+        
         public void StartSession()
         {
             var arg = SessionService.LoadSession();
             var ChrData = arg.First;
             var MdData = arg.Second;
-            Character.ListGeneralAttributes = ChrData.First;
-            foreach(var item in ChrData.Second){
-                lb_players.Items.Add( new CharacterForList(item) );
+            Character.ListGeneralAttributes = SessionService.StructRVToInt( ChrData.Second );
+            if (ChrData.First != null ) { 
+                foreach(var item in ChrData.First){
+                    lb_players.Items.Add( new CharacterForList( SessionService.ChrLoad( item ) ) );
+                }
             }
-            foreach(var item in MdData)
-            {
-                PSMList.Items.Add(item);
+            if (MdData != null) { 
+                foreach (var item in SessionService.StructRVToInt( MdData ))
+                {
+                    PSMList.Items.Add(item);
+                }
             }
         }
 
