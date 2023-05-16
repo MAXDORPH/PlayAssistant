@@ -35,8 +35,8 @@ namespace PlayAssistant
         {
             SessionService.SessionName= game;
             MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            ((MainWindow)Application.Current.MainWindow).OpenGameCreationWindow();
             parentWindow.StartSession();
-            ((GameChooseMenu)Application.Current.MainWindow.Content).SetPage(new TestGamePage());
         }
     }
 }

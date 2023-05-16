@@ -63,6 +63,7 @@ namespace PlayAssistant
             using (StreamWriter chr = new StreamWriter(@$"{SessionName}/Characters.json"), md = new StreamWriter($@"{SessionName}/Modules.json"))
             {
                 var serializer = new JsonSerializer();
+                serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 serializer.Serialize(chr, ChrData);
                 serializer.Serialize(md, MdData);
             }
