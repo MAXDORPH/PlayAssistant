@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +20,58 @@ namespace PlayAssistant
     /// </summary>
     public partial class GameList : Page
     {
-        public GameList()
+        private List<GameBtn> btn_list = new List<GameBtn>();
+
+        public GameList(List<string> titles)
         {
             InitializeComponent();
 
-            GameBtn btn1 = new GameBtn();
-            GameBtn btn2 = new GameBtn();
-            GameBtn btn3 = new GameBtn();
+            foreach(var title in titles)
+                btn_list.Add(new GameBtn(title));
 
-            btn1.SetValue(Grid.ColumnProperty, 0);
-            btn2.SetValue(Grid.ColumnProperty, 1);
-            btn3.SetValue(Grid.ColumnProperty, 2);
+            for (int i = 0;i < titles.Count;i++)
+            {
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition() { 
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                btn_list[i].SetValue(Grid.ColumnProperty, i);
+                MainGrid.Children.Add(btn_list[i]);
+            }
+        }
 
-            GameList_element.MainGrid.Children.Add(btn1);
-            GameList_element.MainGrid.Children.Add(btn2);
-            GameList_element.MainGrid.Children.Add(btn3);
+        public void Search(string name)
+        {
+            MainGrid.Children.Clear();
+            MainGrid.ColumnDefinitions.Clear();
+
+            for (int i = 0;i < btn_list.Count;i++)
+            {
+                if (btn_list[i].game.ToLower().Contains(name.Trim().ToLower()))
+                {
+                    MainGrid.ColumnDefinitions.Add(new ColumnDefinition()
+                    {
+                        Width = new GridLength(1, GridUnitType.Star)
+                    });
+                    btn_list[i].SetValue(Grid.ColumnProperty, i);
+                    MainGrid.Children.Add(btn_list[i]);
+                }
+            }
+        }
+
+        public void ResetSearch()
+        {
+            MainGrid.Children.Clear();
+            MainGrid.ColumnDefinitions.Clear();
+
+            for (int i = 0; i < btn_list.Count; i++)
+            {
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition()
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                btn_list[i].SetValue(Grid.ColumnProperty, i);
+                MainGrid.Children.Add(btn_list[i]);
+            }
         }
     }
 }

@@ -16,27 +16,25 @@ using System.Windows.Shapes;
 namespace PlayAssistant
 {
     /// <summary>
-    /// Логика взаимодействия для GameBtn.xaml
+    /// Логика взаимодействия для GameCreateMenu.xaml
     /// </summary>
-    public partial class GameBtn : UserControl
+    public partial class GameCreateMenu : UserControl
     {
-        public string game = "TestGame";
-
-        public GameBtn(string _game_name = "Game")
+        public GameCreateMenu()
         {
             InitializeComponent();
-
-            game = _game_name.ToLower();
-
-            Select_btn.Content = _game_name;
         }
 
-        private void Select_btn_Click(object sender, RoutedEventArgs e)
+        private void Back_btn_Click(object sender, RoutedEventArgs e)
         {
-            SessionService.SessionName= game;
-            MainWindow parentWindow = Window.GetWindow(this) as MainWindow;
+            ((GameChooseMenu)Application.Current.MainWindow.Content).CloseGameCreate();
+        }
+
+        private void Create_btn_Click(object sender, RoutedEventArgs e)
+        {
+            ((GameChooseMenu)Application.Current.MainWindow.Content).CloseGameCreate();
+            SessionService.CreateSession(ElTitle.Text);
             ((MainWindow)Application.Current.MainWindow).OpenGameCreationWindow();
-            parentWindow.StartSession();
         }
     }
 }
