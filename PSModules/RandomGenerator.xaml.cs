@@ -68,7 +68,8 @@ namespace PSModules
             {
                 from = Convert.ToInt32(From_textbox.Text);
                 to = Convert.ToInt32(To_textbox.Text);
-                Result_textblock.Text = rand.Next(from, to).ToString();
+                last_value = rand.Next(from, to);
+                Result_textblock.Text = last_value.ToString();
             }
             catch {
                 Result_textblock.Text = "Not a number";
@@ -79,7 +80,7 @@ namespace PSModules
         public string Title { get => (string)ElTitle.Content; set => ElTitle.Content = value; }
         public string Value { get => last_value.ToString(); set => Set_Value(value); }
 
-        private void Set_Value(string _value)
+        public void Set_Value(string _value)
         {
             Result_textblock.Text = _value;
             last_value = Int32.Parse(_value);

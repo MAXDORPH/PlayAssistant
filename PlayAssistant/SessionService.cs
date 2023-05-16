@@ -47,14 +47,23 @@ namespace PlayAssistant
         {
             SessionName = _SessionName;
             Directory.CreateDirectory(SessionName);
-            using (FileStream chr = File.Create($@"{SessionName}/Characters.json"), md = File.Create($@"{SessionName}/Modules.json"))
+            var serializer = new JsonSerializer();
+            using (FileStream chr = File.Create($@"{SessionName}/Characters.json"), 
+                md = File.Create($@"{SessionName}/Modules.json"))
             {
-                var serializer = new JsonSerializer();
                 var tmpChr = new ChrListDataType();
                 var tmpMd = new MdListDataType();
                 serializer.Serialize(new StreamWriter(chr), tmpChr);
                 serializer.Serialize(new StreamWriter(md), tmpMd);
             }
+            List<string> tmpTl;
+            using (StreamReader fs = new StreamReader("titles.json"))
+                tmpTl = serializer.Deserialize(fs, typeof(List<string>)) as List<string>;  
+            if (tmpTl == null)
+                tmpTl = new List<string>();
+            tmpTl.Add(_SessionName);
+            using (StreamWriter fs = new StreamWriter("titles.json"))
+                serializer.Serialize(fs, tmpTl);
         }
         public static void SaveSession(SessinDataType ChrAndMd)
         {
@@ -126,5 +135,18 @@ namespace PlayAssistant
             }   
             return ans;
         }
+        public static List<string> SessionsList()
+        {
+            var ans = new List<string>();
+            var serializer = new JsonSerializer();
+            using (var fs = new StreamReader("titles.json"))
+            {
+                ans = serializer.Deserialize(fs, typeof(List<string>)) as List<string>;
+            }
+            if (ans == null)
+                ans = new List<string>();
+            return ans;
+        }
+
     }    
 }

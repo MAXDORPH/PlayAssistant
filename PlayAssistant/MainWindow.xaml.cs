@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PSModules;
 using ServiceLibrary;
 
 namespace PlayAssistant
@@ -26,7 +27,7 @@ namespace PlayAssistant
     using SessinDataType = Pair<Pair<List<CharacterBase>, List<Pair<Type, ReturnValue>>>, List<Pair<Type, ReturnValue>>>;
     public partial class MainWindow : Window
     {
-        GameChooseMenu gcm = new GameChooseMenu();
+        GameChooseMenu gcm = new GameChooseMenu(SessionService.SessionsList());
         object mainWindow;
 
         public MainWindow()
@@ -36,7 +37,7 @@ namespace PlayAssistant
             mainWindow = Application.Current.MainWindow.Content;
 
             Application.Current.MainWindow.Content = gcm;
-            
+
             this.Closing += MainWindow_Closing;
         }
         //  1 -- персонажи 2 -- лист генеральных характеристик 3 -- лист игровых модулей
