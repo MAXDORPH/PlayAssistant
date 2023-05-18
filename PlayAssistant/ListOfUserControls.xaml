@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PlayAssistant"
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="342">
-    <Grid Background="White">
+    <Grid Background="#2D283E">
         <Grid.RowDefinitions>
             <RowDefinition Height="383*"/>
             <RowDefinition Height="67*"/>
