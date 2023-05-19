@@ -11,8 +11,8 @@
             <RowDefinition Height="383*"/>
             <RowDefinition Height="67*"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="MainList" Margin="30,49,30,2" MouseDoubleClick="MainList_MouseDoubleClick"/>
+        <ListBox Foreground="White" x:Name="MainList" Margin="30,49,30,2" MouseDoubleClick="MainList_MouseDoubleClick"/>
         <Button Content="Conf" HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.31,0.39" Width="174" Height="54" Click="Button_Click" Grid.Row="1"/>
-        <TextBox x:Name ="ElementTitle"  Text="Title" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="174" Height="34"/>
+        <TextBox Foreground="White" x:Name ="ElementTitle"  Text="Title" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="174" Height="34"/>
     </Grid>
 </UserControl>

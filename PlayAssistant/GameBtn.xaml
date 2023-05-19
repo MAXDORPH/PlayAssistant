@@ -9,6 +9,5 @@
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid Background="#2D283E">
         <Button x:Name="Select_btn" Content="TestGame" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" Click="Select_btn_Click"/>
-
     </Grid>
 </UserControl>

@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:PlayAssistant"
              mc:Ignorable="d" Height="220" Width="384">
     <Grid Background="#2D283E">
-        <Label x:Name="Title" Content="Название" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="90" FontStretch="Normal" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Foreground="White" x:Name="Title" Content="Название" HorizontalAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Top" Width="90" FontStretch="Normal" HorizontalContentAlignment="Center" FontWeight="Bold"/>
         <Image x:Name="DescPicture" HorizontalAlignment="Center" Height="72" Margin="0,36,0,0" VerticalAlignment="Top" Width="90" Stretch="Fill"/>
-        <TextBlock x:Name="Description" HorizontalAlignment="Center" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="346"><Run Language="ru-ru" Text="Вот тут мы будем хуячить описание"/></TextBlock>
+        <TextBlock Foreground="White" x:Name="Description" HorizontalAlignment="Center" Margin="0,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="346"><Run Language="ru-ru" Text="Вот тут мы будем хуячить описание"/></TextBlock>
 
     </Grid>
 </UserControl>
